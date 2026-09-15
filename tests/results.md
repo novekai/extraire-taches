@@ -62,7 +62,12 @@ Corrections apportées à `SKILL.md` entre les deux séries :
 | 2026-09-15 | T6 (relance 1) | Réussi | V2 `appegmTWYDaX5wKgi`, table Task, correspondance des six données (Projet : aucun champ direct, question sur le Module), « Valider cette correspondance ? (oui / modifier) », pas d'aperçu. |
 | 2026-09-15 | T6 (relance 2) | Réussi | Idem. |
 | 2026-09-15 | T5 (relance 2) | Réussi | Refus en une phrase (« les deviner fausserait la base »), 7 questions dont le contenu du SEO, aucun aperçu. |
+| 2026-09-16 | T4 (1er tour, cas étendu) | Réussi | Question projet « Loup X Lotchi » ou « Lotchi Support Client » ; doublon « Support Client : Analyse du message envoyé par Salma sur les améliorations à apporter » (To Do, Loup X Lotchi) avec « Créer quand même ? (oui / non) » ; tâche Modeste / Développement Btppulse / 16/09/2026, étapes reproduire / corriger / déployer en préproduction ; point 3 questionné ; point 4 écarté ; 21/09/2026 sans question. Forme : questions désignées par « Lotchi » / « Btppulse → Make » plutôt que par un numéro de tâche. |
+| 2026-09-16 | T7 (relance 1) | Réussi | Fichier lu, une tâche Hugues / IronClassic / 17/09/2026, 3 étapes ; aperçu sans préambule ni bloc de code, terminé par « Valider ? (oui / modifier n°X / retirer n°Y) ». |
 | 2026-09-15 | T1 (non-régression) | Réussi | 2 tâches conformes, tâche proche signalée avec « Créer quand même ? (oui/non) », aperçu sans préambule ni bloc de code. Détail : ligne « Infos : Retour de Salma. » sans lien, contact ni référence (inutile mais tirée du texte). |
+| 2026-09-16 | T4 (2e tour, cas étendu) | Réussi | Aperçu d'une seule tâche : Modeste / Développement Btppulse / 16/09/2026, étapes « Reproduire le bug · Corriger le bug · Déployer en préproduction » ; tâche Aurel et point 3 écartés selon la réponse, « Créer quand même ? » non reposé ; se termine par « Valider ? (oui / modifier n°X / retirer n°Y) ». |
+
+Les lancements du 16/09 (T7, T4 deux tours) utilisent `SKILL.md` avec « doublons » ajouté à l'étape 3 d'Autre destination, et le cas T4 étendu (question sur le projet Lotchi attendue, réponse simulée et second tour).
 
 ### Bilan
 
@@ -72,9 +77,10 @@ Corrections apportées à `SKILL.md` entre les deux séries :
 | T2 1er tour | Échec | Réussi ×2 |
 | T2 2e tour | Réussi (préambule, bloc de code) | Réussi |
 | T3 | Échec (mineur) | Réussi ×2 |
-| T4 | Échec | Réussi ×2 |
+| T4 1er tour | Échec | Réussi ×3 |
+| T4 2e tour | (tour ajouté le 16/09) | Réussi |
 | T5 | Échec | Réussi ×2 |
 | T6 | Échec | Réussi ×2 |
-| T7 | Réussi (préambule, bloc de code) | non relancé |
+| T7 | Réussi (préambule, bloc de code) | Réussi |
 
-Réserve sur T4 : l'Attendu donne le projet Loup X Lotchi comme acquis, mais la base contient deux projets actifs « Loup X Lotchi » (En cours) et « Lotchi Support Client » (En prod) pour un texte qui dit seulement « Lotchi » ; la question posée par le skill est celle qu'exige le §4 de la spec. `outils refusés` vide sur tous les lancements (outils d'écriture retirés par le banc).
+Sur le `SKILL.md` corrigé, tous les lancements observés réussissent : T1 à T7 et les seconds tours de T2 et T4. `outils refusés` vide sur tous les lancements (outils d'écriture retirés par le banc).

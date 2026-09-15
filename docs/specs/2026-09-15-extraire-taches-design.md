@@ -79,8 +79,8 @@ Ces identifiants sont écrits dans `SKILL.md`. Base et table peuvent être rempl
 2. **Déterminer la destination.** Par défaut : réglages d'installation. Si l'appel désigne une autre base : procédure du §9.
 3. **Charger le contexte :** personnes (Team List) et projets de la destination.
 4. **Extraire les tâches** selon les règles du §6. Pour chaque tâche, relever une courte citation du passage source.
-5. **Poser les questions de clarification** (§7). Répéter tant qu'un doute subsiste.
-6. **Détecter les doublons** (§8) dans les tâches existantes des projets retenus.
+5. **Détecter les doublons** (§8) dans les tâches existantes des projets retenus ou candidats, avant les questions.
+6. **Poser les questions de clarification** (§7). Répéter tant qu'un doute subsiste.
 7. **Afficher l'aperçu** (§10) et attendre la validation.
 8. **Créer les tâches validées**, puis afficher la liste des tâches créées avec leurs liens.
 
@@ -133,10 +133,10 @@ Infos : message reçu par e-mail le 14/09
 
 ## 8. Doublons
 
-- Comparer chaque tâche aux tâches existantes des mêmes projets, tous statuts confondus.
-- **Doublon probable :** signalé dans l'aperçu avec le titre et le statut de la tâche existante.
+- Avant les questions, comparer chaque tâche aux tâches existantes des projets retenus ou candidats, tous statuts confondus.
+- **Doublon probable :** signalé dès la première réponse avec le titre, le statut et le projet de la tâche existante : dans la liste de questions s'il y en a, sinon dans l'aperçu. Il est repris dans la colonne Doublon de l'aperçu.
 - **Tâche proche :** signalée de la même façon.
-- Dans les deux cas, **l'utilisateur décide** : pour chaque tâche signalée, le skill demande « Créer quand même ? oui/non ». Pas de choix par défaut ; rien n'est créé sans réponse.
+- Dans les deux cas, **l'utilisateur décide** : pour chaque tâche signalée, le skill demande « Créer quand même ? (oui/non) ». Pas de choix par défaut ; rien n'est créé sans réponse.
 - Les tâches existantes servent aussi de contexte pour formuler les étapes, sans rien ajouter qui ne figure pas dans le texte.
 
 ## 9. Autre destination

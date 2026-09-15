@@ -97,7 +97,7 @@ Tâches existantes d'un projet : table Task filtrée sur le champ Projet.
 
 1. Chercher la base par son nom. Base au nom exact : la retenir, sans demander de confirmation. Sinon, plusieurs résultats : demander laquelle.
 2. Lister ses tables ; plusieurs candidates : demander laquelle.
-3. Associer les six données ci-dessus (Titre, Étapes, Statut, Responsable, Projet, Début) aux champs de cette table. La réponse de cette étape contient, dans l'ordre : base et table retenues ; tableau `Donnée | Champ | Type`, une ligne par donnée (donnée sans champ : « aucun », laissée de côté après confirmation) ; les questions sur cette correspondance ; « Valider cette correspondance ? (oui / modifier) ». Extraction, questions sur les tâches et aperçu viennent après cette validation.
+3. Associer les six données ci-dessus (Titre, Étapes, Statut, Responsable, Projet, Début) aux champs de cette table. La réponse de cette étape contient, dans l'ordre : base et table retenues ; tableau `Donnée | Champ | Type`, une ligne par donnée (donnée sans champ : « aucun », laissée de côté après confirmation) ; les questions sur cette correspondance ; « Valider cette correspondance ? (oui / modifier) ». Extraction, doublons, questions sur les tâches et aperçu viennent après cette validation.
 4. Repérer les tables liées aux champs responsable et projet.
 
 ## Erreurs
