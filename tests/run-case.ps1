@@ -25,7 +25,9 @@ if ($Resume) {
     $prompt = Get-Section 'Réponse simulée'
     if (-not $prompt) { throw "Le cas $Case n'a pas de section '## Réponse simulée'." }
 } else {
-    $entree = (Get-Section 'Entrée').Replace('{{TESTS}}', $testsDir)
+    $entree = Get-Section 'Entrée'
+    if (-not $entree) { throw "Le cas $Case n'a pas de section '## Entrée'." }
+    $entree = $entree.Replace('{{TESTS}}', $testsDir)
     switch ($Arm) {
         'without' { $prompt = "Extrais les tâches à réaliser de ce texte et crée-les dans la base Airtable « Team & Project Management V3 », table Task.`n`n$entree" }
         'raw'     { $prompt = $entree }
@@ -61,14 +63,26 @@ if ($AllowWrite) {
 if ($Arm -eq 'with') { $cliArgs += @('--plugin-dir', $pluginDir) }
 if ($Resume) { $cliArgs += @('--resume', $Resume) }
 
-$work = Join-Path $env:TEMP 'extraire-taches-tests'
+# Un dossier de travail neuf par conversation : Claude Code range sessions et mémoire
+# automatique par dossier ; un dossier partagé ferait passer la mémoire d'un cas à l'autre.
+$resultsDir = Join-Path $testsDir 'results'
+$sessionsDir = Join-Path $resultsDir 'sessions'
+New-Item -ItemType Directory -Force $sessionsDir | Out-Null
+if ($Resume) {
+    $mapFile = Join-Path $sessionsDir "$Resume.txt"
+    if (-not (Test-Path $mapFile)) { throw "Session inconnue : $Resume (aucun dossier de travail enregistré)." }
+    $work = (Get-Content $mapFile -Raw -Encoding UTF8).Trim()
+} else {
+    $work = Join-Path $env:TEMP ("extraire-taches-tests\{0}-{1}-{2}" -f $Case, $Arm, (Get-Date -Format 'yyyyMMdd-HHmmss'))
+}
 New-Item -ItemType Directory -Force $work | Out-Null
 Push-Location $work
 try { $raw = ($prompt | claude @cliArgs) -join "`n" } finally { Pop-Location }
 
 $res = $raw | ConvertFrom-Json
-$resultsDir = Join-Path $testsDir 'results'
-New-Item -ItemType Directory -Force $resultsDir | Out-Null
+if (-not $Resume) {
+    Set-Content -Path (Join-Path $sessionsDir "$($res.session_id).txt") -Value $work -Encoding UTF8
+}
 $suffix = if ($Resume) { '-tour2' } else { '' }
 $out = Join-Path $resultsDir ("{0}-{1}{2}-{3}.json" -f $Case, $Arm, $suffix, (Get-Date -Format 'yyyyMMdd-HHmmss'))
 $raw | Set-Content -Path $out -Encoding UTF8
