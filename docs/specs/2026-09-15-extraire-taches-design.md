@@ -71,7 +71,7 @@ Correspondances :
 - **Personnes :** recherche par prénom dans Team List (champ `Name`), en priorité parmi les personnes au statut `Actif`. Une personne absente, inactive ou ambiguë déclenche une question.
 - **Projets :** recherche par nom dans Project (champ `Nom du projet`), en priorité parmi les projets qui ne sont ni `Annulé` ni `Terminé`. Des noms proches (ex. « Site web Eurêka » / « Application web Eureka » / « Blog Eurekâ ») ou un projet clos déclenchent une question.
 
-Ces identifiants sont documentés dans `references/destinations.md`. Base et table sont fournies par les réglages d'installation du plugin (§11).
+Ces identifiants sont écrits dans `SKILL.md`. Base et table peuvent être remplacées par les réglages d'installation du plugin (§11).
 
 ## 5. Déroulé
 
@@ -179,8 +179,6 @@ Tasks_Def_Skill/
 │   ├── plugin.json
 │   └── marketplace.json
 ├── SKILL.md
-├── references/
-│   └── destinations.md
 ├── tests/
 ├── docs/
 └── README.md
@@ -190,7 +188,7 @@ Tasks_Def_Skill/
 - `plugin.json` : nom `extraire-taches`, version, description, auteur NovekAI, dépôt `https://github.com/novekai/extraire-taches`, et `userConfig` :
   - `airtable_base_id` (défaut souhaité : `appeQ2eExbWynIgDK`)
   - `airtable_table_id` (défaut souhaité : `tblttmFAIQZK6zrXo`)
-- `SKILL.md` lit ces valeurs via `${user_config.airtable_base_id}` et `${user_config.airtable_table_id}`.
+- `SKILL.md` lit ces valeurs via `${user_config.airtable_base_id}` et `${user_config.airtable_table_id}`. Une valeur non saisie n'est pas substituée (constaté avec Claude Code 2.1.217, et la clé `default` n'est pas appliquée) : le skill utilise alors la destination par défaut écrite dans `SKILL.md` (§4).
 - `marketplace.json` : place de marché `novekai` listant le plugin avec `source: "./"`.
 - `allowed-tools` : outils Airtable en lecture (recherche de base, liste des tables, schéma, lecture d'enregistrements). La création reste soumise à permission et à la validation de l'aperçu.
 
@@ -212,6 +210,8 @@ claude plugin install extraire-taches@novekai
 
 Méthode : tester d'abord sans le skill pour relever les défauts, puis avec le skill jusqu'à conformité. Les tests s'arrêtent à l'aperçu : aucune écriture dans Airtable.
 
+Banc : `tests/run-case.ps1` lance `claude -p` depuis un dossier neutre, avec ou sans le plugin (`--plugin-dir`), autres plugins désactivés, outils d'écriture Airtable interdits. `claude plugin eval` est en accès anticipé et n'est pas utilisable.
+
 | # | Scénario | Résultat attendu |
 |---|---|---|
 | T1 | Liste de points claire, toutes infos présentes | Tâches correctes, titres et étapes conformes au §6, aucune question superflue |
@@ -225,8 +225,8 @@ Puis un essai réel de 1 ou 2 tâches dans la base V3, supprimées ensuite avec 
 
 ## 13. Points à vérifier à l'implémentation
 
-1. `userConfig` accepte-t-il une valeur par défaut ? Sinon, saisie à l'installation.
-2. `SKILL.md` à la racine donne bien `/extraire-taches` (test d'installation réel).
+1. ~~`userConfig` accepte-t-il une valeur par défaut ?~~ Non appliquée : repli sur la destination écrite dans `SKILL.md`.
+2. `SKILL.md` à la racine donne une commande sans préfixe (vérifié avec `--plugin-dir`) ; reste à confirmer après installation depuis GitHub.
 3. Le texte enrichi Airtable rend-il les cases à cocher `- [ ]` ? Sinon, liste numérotée.
 4. Méthode de lecture des `.docx`.
 5. Format des noms d'outils dans `allowed-tools` pour les connecteurs claude.ai.
