@@ -25,9 +25,9 @@ Entrée : $ARGUMENTS
 1. **Lire l'entrée.** Texte collé : tel quel. Fichier `.txt`, `.md`, `.pdf` : le lire. Fichier `.docx` : `python -c "import docx,sys; print('\n'.join(p.text for p in docx.Document(sys.argv[1]).paragraphs))" "<chemin>"`. Lien Google Drive ou Notion : connecteur correspondant ; autre lien : récupérer la page. Entrée vide, illisible ou inaccessible : le dire, demander de coller le texte, s'arrêter.
 2. **Destination.** Base `${user_config.airtable_base_id}`, table `${user_config.airtable_table_id}`. Une valeur vide ou commençant par `${` n'est pas configurée : utiliser la destination par défaut. Si l'utilisateur désigne une autre base (« dans la base X ») : section Autre destination.
 3. **Contexte.** Lire les personnes et les projets de la destination (nom + statut).
-4. **Extraire** les tâches selon les Règles. Noter pour chacune une citation courte du passage source.
-5. **Questions** (section Questions). Attendre les réponses. Recommencer tant qu'un doute subsiste.
-6. **Doublons** (section Doublons).
+4. **Extraire** les tâches selon les Règles. Noter pour chacune une citation courte du passage source. Aucune tâche : répondre qu'aucune tâche à réaliser n'a été trouvée, donner pour chaque passage la raison de l'écarter (constat, action terminée), puis s'arrêter. Ne proposer aucune tâche de remplacement : « si tu veux quand même tracer un suivi (ex. … ) » propose une tâche absente du texte, donc inventée.
+5. **Doublons** (section Doublons), avant les questions.
+6. **Questions** (section Questions). Attendre les réponses. Recommencer tant qu'un doute subsiste.
 7. **Aperçu** (section Aperçu). Attendre la validation.
 8. **Créer** uniquement les tâches validées. Afficher ensuite les tâches créées avec leur lien `https://airtable.com/<base>/<table>/<record>`. Échec partiel : dire ce qui est créé et ce qui ne l'est pas.
 
@@ -46,17 +46,22 @@ Entrée : $ARGUMENTS
 ## Questions
 
 - Une seule liste numérotée ; chaque question rattachée à une tâche, désignée par son numéro et sa citation source ; choix proposés quand c'est possible (« Tâche 3 (“…”) — projet : Site web Eurêka ou Application web Eureka ? »).
-- Poser une question si : responsable absent, inconnu, inactif ou ambigu ; projet absent, ambigu ou clos ; date de début absente ; date relative sans référence ; tâche trop vague pour être découpée ; formulation hésitante.
+- Passer chaque tâche sur ces cinq points ; chaque point non établi par le texte, les réponses ou la base donne une question :
+  1. **Tâche ?** Formulation hésitante : « Est-ce une tâche à réaliser ? »
+  2. **Contenu** : action floue (« voir pour le SEO ») ou trop mince pour écrire titre et étapes sans deviner : « Que faut-il faire concrètement ? »
+  3. **Responsable** : absent, inconnu, inactif ou ambigu.
+  4. **Projet** : absent, ambigu ou clos.
+  5. **Date de début** : absente, ou relative sans date de référence.
 - « laisser vide » est une réponse valide.
 - Tant qu'un doute subsiste, la réponse ne contient ni aperçu, ni tableau de tâches, ni valeur provisoire (« non précisé », « vraisemblablement »).
 
 ## Doublons
 
-Pour chaque projet retenu, lire ses tâches existantes, tous statuts confondus. Tâche identique ou proche : la signaler dans l'aperçu (titre et statut de l'existante) et demander « Créer quand même ? (oui/non) ». Aucun choix par défaut : rien n'est créé pour cette tâche sans réponse. Les tâches existantes servent aussi de contexte, sans rien ajouter qui ne soit dans le texte.
+Avant les questions, pour chaque projet retenu ou candidat, lire ses tâches existantes, tous statuts confondus. Tâche identique ou proche : signaler l'existante (titre, statut, projet) et demander « Créer quand même ? (oui/non) » dès la première réponse : dans la liste de questions s'il y en a, sinon dans l'aperçu. La reprendre dans la colonne Doublon de l'aperçu. Aucun choix par défaut : rien n'est créé pour cette tâche sans réponse. Les tâches existantes servent aussi de contexte, sans rien ajouter qui ne soit dans le texte.
 
 ## Aperçu
 
-Format exact, sans préambule :
+La réponse commence par la ligne d'en-tête du tableau, sans phrase d'introduction, et se termine par la ligne « Valider ? … ». Tableau et étapes en Markdown rendu, hors bloc de code. Gabarit :
 
 ```
 | # | Titre | Responsable | Projet | Début | Doublon |
@@ -92,7 +97,7 @@ Tâches existantes d'un projet : table Task filtrée sur le champ Projet.
 
 1. Chercher la base par son nom. Base au nom exact : la retenir, sans demander de confirmation. Sinon, plusieurs résultats : demander laquelle.
 2. Lister ses tables ; plusieurs candidates : demander laquelle.
-3. Associer les six données ci-dessus (Titre, Étapes, Statut, Responsable, Projet, Début) aux champs de cette table ; présenter la correspondance en tableau `Donnée | Champ | Type`, une ligne par donnée, et la faire valider. Donnée sans champ : « aucun », laissée de côté après confirmation.
+3. Associer les six données ci-dessus (Titre, Étapes, Statut, Responsable, Projet, Début) aux champs de cette table. La réponse de cette étape contient, dans l'ordre : base et table retenues ; tableau `Donnée | Champ | Type`, une ligne par donnée (donnée sans champ : « aucun », laissée de côté après confirmation) ; les questions sur cette correspondance ; « Valider cette correspondance ? (oui / modifier) ». Extraction, questions sur les tâches et aperçu viennent après cette validation.
 4. Repérer les tables liées aux champs responsable et projet.
 
 ## Erreurs

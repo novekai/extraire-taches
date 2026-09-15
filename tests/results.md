@@ -26,5 +26,55 @@ Note de méthode : dans ce banc, l'arm `without` ne donne au modèle aucun outil
 
 ## Avec skill
 
+### Série 1 — `SKILL.md` de a699924
+
 | Date | Cas | Verdict | Écarts restants |
 |---|---|---|---|
+| 2026-09-15 | T1 | Réussi | Tous les points de l'Attendu respectés (2 tâches, projets et dates exacts, 3 étapes chacune, tâche proche « Support Client : Analyse du message envoyé par Salma… » (To Do) signalée avec « Créer quand même ? »). Forme : préambule « Contexte lu, doublons vérifiés. Voici l'aperçu. » contraire au §10 (« Pas de préambule »). |
+| 2026-09-15 | T2 (1er tour) | Échec | Pas de question sur le contenu de « voir pour le SEO » (l'Attendu exige « contenu de « voir pour le SEO » et son projet ») : seule question sur la tâche 2 : « Projet : SEO sur le projet Eureka, ou un projet SEO existant… ». Les autres questions sont présentes (responsable, projet Eureka annulé, relance, dates). |
+| 2026-09-15 | T2 (2e tour) | Réussi | Martial / Site web Eurêka / 22/09/2026 et Martial / Optimisation SEO des pages villes / 23/09/2026, pas de relance. Forme : préambule « Aucun doublon trouvé dans les deux projets. Voici l'aperçu : » et tableau dans un bloc de code (non rendu). |
+| 2026-09-15 | T3 | Échec (mineur) | Indique bien « Aucune tâche à créer », mais propose une tâche absente du texte : « Si tu veux quand même tracer un suivi (ex. « Recueillir les retours sur Plumeo »), dis-le-moi et je le formule. » |
+| 2026-09-15 | T4 | Échec | Doublon non signalé : les tâches existantes ne sont pas lues avant les questions (« Dès vos réponses, je vérifie les doublons »). Question sur le projet légitime au vu des données : deux projets actifs « Lotchi Support Client » (En prod) et « Loup X Lotchi » (En cours). Point 3 questionné, point 4 écarté, « demain » = 16/09/2026 sans question. |
+| 2026-09-15 | T5 | Échec | Refus d'inventer en une phrase et questions posées, mais même oubli qu'en T2 : aucune question sur le contenu de « voir pour le SEO » (« Tâche 2 — projet ? » seulement). |
+| 2026-09-15 | T6 | Échec | Base V2 (`appegmTWYDaX5wKgi`) et correspondance présentées, mais aperçu affiché dans la même réponse sans validation de la correspondance et avec une valeur provisoire : « Ironclassic → « Réalisation des workflows » *(si A)* ». |
+| 2026-09-15 | T7 | Réussi | Fichier lu, une tâche Hugues / IronClassic / 17/09/2026, 3 étapes. Forme : préambule « Aucune tâche existante sur ce projet, donc aucun doublon. Voici l'aperçu : » et aperçu dans un bloc de code. |
+
+Corrections apportées à `SKILL.md` entre les deux séries :
+
+1. Questions : les déclencheurs deviennent une grille de cinq points à passer pour chaque tâche, avec un point « Contenu » (« voir pour le SEO » → « Que faut-il faire concrètement ? ») — T2, T5.
+2. Déroulé étape 4 : forme de la réponse « aucune tâche » (raison par passage, arrêt) et interdiction de proposer une tâche de remplacement, avec la justification observée citée — T3.
+3. Doublons lus avant les questions, dans chaque projet retenu ou candidat ; « Créer quand même ? » posé dès la première réponse (dans la liste de questions s'il y en a) — T4.
+4. Autre destination étape 3 : gabarit de la réponse de correspondance, terminée par « Valider cette correspondance ? (oui / modifier) », aperçu après validation — T6.
+5. Aperçu : la réponse commence par l'en-tête du tableau et se termine par « Valider ? … », Markdown rendu hors bloc de code — préambules et blocs de code de T1, T2, T7.
+
+### Série 2 — `SKILL.md` corrigé
+
+| Date | Cas | Verdict | Écarts restants |
+|---|---|---|---|
+| 2026-09-15 | T4 (relance 1) | Réussi | Doublon signalé : « Support Client : Analyse du message envoyé par Salma sur les améliorations à apporter » (To Do, Loup X Lotchi), « Créer quand même ? (oui / non) ». Projet demandé (Loup X Lotchi ou Lotchi Support Client), point 3 questionné, point 4 écarté, 21/09 et 16/09 sans question sur la référence. |
+| 2026-09-15 | T4 (relance 2) | Réussi | Idem ; étapes de la tâche 2 annoncées : « reproduire → corriger → déployer en préproduction ». |
+| 2026-09-15 | T2 (1er tour, relance 1) | Réussi | Question « Contenu : « voir pour le SEO » est trop vague… Que doit faire Martial concrètement ? » ajoutée aux autres. Forme : tâches désignées par A/B/C au lieu de numéros. |
+| 2026-09-15 | T2 (2e tour, relance 1) | Réussi | Aperçu sans préambule ni bloc de code ; Martial / Site web Eurêka / 22/09/2026, Martial / Optimisation SEO des pages villes / 23/09/2026 ; pas de relance. |
+| 2026-09-15 | T2 (1er tour, relance 2) | Réussi | Toutes les questions de l'Attendu, dont le contenu du SEO. |
+| 2026-09-15 | T5 (relance 1) | Réussi | Refus en une phrase (« une valeur devinée […] écrirait des données fausses dans la base »), 7 questions dont le contenu du SEO, aucun aperçu. |
+| 2026-09-15 | T3 (relance 1) | Réussi | « Aucune tâche à réaliser n'a été trouvée », raison par passage, aucune tâche suggérée. |
+| 2026-09-15 | T3 (relance 2) | Réussi | Idem. |
+| 2026-09-15 | T6 (relance 1) | Réussi | V2 `appegmTWYDaX5wKgi`, table Task, correspondance des six données (Projet : aucun champ direct, question sur le Module), « Valider cette correspondance ? (oui / modifier) », pas d'aperçu. |
+| 2026-09-15 | T6 (relance 2) | Réussi | Idem. |
+| 2026-09-15 | T5 (relance 2) | Réussi | Refus en une phrase (« les deviner fausserait la base »), 7 questions dont le contenu du SEO, aucun aperçu. |
+| 2026-09-15 | T1 (non-régression) | Réussi | 2 tâches conformes, tâche proche signalée avec « Créer quand même ? (oui/non) », aperçu sans préambule ni bloc de code. Détail : ligne « Infos : Retour de Salma. » sans lien, contact ni référence (inutile mais tirée du texte). |
+
+### Bilan
+
+| Cas | Série 1 | Série 2 |
+|---|---|---|
+| T1 | Réussi (préambule) | Réussi |
+| T2 1er tour | Échec | Réussi ×2 |
+| T2 2e tour | Réussi (préambule, bloc de code) | Réussi |
+| T3 | Échec (mineur) | Réussi ×2 |
+| T4 | Échec | Réussi ×2 |
+| T5 | Échec | Réussi ×2 |
+| T6 | Échec | Réussi ×2 |
+| T7 | Réussi (préambule, bloc de code) | non relancé |
+
+Réserve sur T4 : l'Attendu donne le projet Loup X Lotchi comme acquis, mais la base contient deux projets actifs « Loup X Lotchi » (En cours) et « Lotchi Support Client » (En prod) pour un texte qui dit seulement « Lotchi » ; la question posée par le skill est celle qu'exige le §4 de la spec. `outils refusés` vide sur tous les lancements (outils d'écriture retirés par le banc).
