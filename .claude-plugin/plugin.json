@@ -1,0 +1,24 @@
+{
+  "name": "extraire-taches",
+  "version": "0.1.0",
+  "description": "Transforme un texte (compte-rendu, liste de points, brief) en tâches structurées et les crée dans Airtable après validation.",
+  "author": { "name": "NovekAI", "email": "espoir@novekai.agency" },
+  "homepage": "https://github.com/novekai/extraire-taches",
+  "repository": "https://github.com/novekai/extraire-taches",
+  "license": "UNLICENSED",
+  "keywords": ["airtable", "tâches", "compte-rendu", "gestion de projet"],
+  "userConfig": {
+    "airtable_base_id": {
+      "type": "string",
+      "title": "ID de la base Airtable",
+      "description": "Base où créer les tâches (commence par app). Vide = Team & Project Management V3.",
+      "required": false
+    },
+    "airtable_table_id": {
+      "type": "string",
+      "title": "ID de la table Airtable",
+      "description": "Table où créer les tâches (commence par tbl). Vide = Task.",
+      "required": false
+    }
+  }
+}

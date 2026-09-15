@@ -1,0 +1,13 @@
+{
+  "name": "novekai",
+  "description": "Plugins Claude Code de NovekAI",
+  "owner": { "name": "NovekAI", "email": "espoir@novekai.agency" },
+  "plugins": [
+    {
+      "name": "extraire-taches",
+      "description": "Transforme un texte en tâches structurées et les crée dans Airtable après validation.",
+      "version": "0.1.0",
+      "source": "./"
+    }
+  ]
+}
