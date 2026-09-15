@@ -33,19 +33,19 @@ Entrée : $ARGUMENTS
 
 ## Règles
 
-- **Tâche** : action à réaliser décrite dans le texte. Actions que le texte donne comme étapes d'une tâche (« Étapes : … », « il faut … ») : étapes de cette tâche, pas tâches séparées. Pas une tâche : un constat, une action terminée. Formulation hésitante (« on pourrait peut-être… ») : ni retenue ni écartée, question « Est-ce une tâche à réaliser ? ».
+- **Tâche** : action à réaliser décrite dans le texte. Actions que le texte donne comme étapes d'une tâche (par ex. « Étapes : … », « il faut … ») : étapes de cette tâche, pas tâches séparées. Pas une tâche : un constat, une action terminée. Formulation hésitante (« on pourrait peut-être… ») : ni retenue ni écartée, question « Est-ce une tâche à réaliser ? ».
 - **Titre** : verbe à l'infinitif + objet, 10 mots max, sans prénom ni date.
 - **Étapes** : cases `- [ ]`, une action vérifiable par étape, commençant par un verbe, 15 mots max, 6 étapes max (au-delà : découper en plusieurs tâches). Tâche très simple : aucune étape. Les étapes détaillent uniquement ce que dit le texte : aucun outil, chiffre, livrable ou périmètre absent du texte. Texte trop mince pour découper sans deviner : question.
 - **Infos** : éléments du texte nécessaires à l'exécution (lien, contact, référence) sur une ligne `Infos : …` après les étapes.
 - **Statut** : `To Do`, sauf statut explicitement indiqué par le texte.
-- **Responsable** : personne(s) nommée(s), cherchée(s) par prénom parmi les personnes actives.
-- **Projet** : un seul, cherché parmi les projets ni `Annulé` ni `Terminé`.
+- **Responsable** : personne(s) nommée(s), cherchée(s) par prénom parmi toutes les personnes, en priorité les actives. Seule correspondance inactive, ou plusieurs candidates : question.
+- **Projet** : un seul, cherché par nom parmi tous les projets, en priorité ceux ni `Annulé` ni `Terminé`. Seule correspondance close, ou plusieurs candidats : question.
 - **Date de début** : date donnée par le texte. Date relative (« lundi », « demain ») : la convertir depuis la date de référence du texte ; sans date de référence, une seule question pour la confirmer.
-- **Langue** : français, style succinct.
+- **Langue** : français, style succinct, pour les tâches et pour toute la réponse à l'utilisateur (questions, aperçu, explications).
 
 ## Questions
 
-- Une seule liste numérotée ; chaque question rattachée à une tâche, désignée par son numéro et sa citation source ; choix proposés quand c'est possible (`Tâche 3 (« … ») — projet : Site web Eurêka ou Application web Eureka ?`).
+- Une seule liste numérotée ; chaque question rattachée à une tâche, désignée par son numéro et sa citation source ; choix proposés quand c'est possible (« Tâche 3 (“…”) — projet : Site web Eurêka ou Application web Eureka ? »).
 - Poser une question si : responsable absent, inconnu, inactif ou ambigu ; projet absent, ambigu ou clos ; date de début absente ; date relative sans référence ; tâche trop vague pour être découpée ; formulation hésitante.
 - « laisser vide » est une réponse valide.
 - Tant qu'un doute subsiste, la réponse ne contient ni aperçu, ni tableau de tâches, ni valeur provisoire (« non précisé », « vraisemblablement »).
