@@ -138,4 +138,17 @@ Coût total : 2,30 USD (budget 6 USD).
 - Anomalie mineure observée (hors périmètre de ce test, non corrigée ici) : dans l'aperçu du tour 1, les étapes affichées à l'écran utilisent le caractère Unicode « ☐ » (U+2610) au lieu de la syntaxe Markdown `[ ]` du gabarit Aperçu de `SKILL.md` — confirmé sur les octets bruts de `tests/results/T1-with-20260916-104242.json`. Le champ Description réellement écrit en base n'est pas affecté.
 - Champ non lié au skill : `Created` (`fldWCnbt63DQVAurI`, type `createdTime`) = 2026-09-16 sur les deux enregistrements — horodatage automatique Airtable, hors mapping de `SKILL.md`.
 
-Rendu des cases à cocher : en attente de vérification par l'utilisateur ; suppression en attente.
+### Rendu des cases à cocher dans Airtable (vérifié le 2026-09-16)
+
+- `- [ ]` (avec tiret, format initial de `SKILL.md`) : s'affiche dans l'interface Airtable en puce suivie du texte littéral « [ ] » — pas de case à cocher.
+- `[ ] Étape` (sans tiret, une étape par ligne) : s'affiche en case à cocher réelle et fonctionnelle. Vérifié en réécrivant directement le champ Description de `recDn5EQXTeD6EFeK` (`[ ] Mettre à jour les données de test\n[ ] Enregistrer une vidéo de 3 minutes\n[ ] Envoyer la vidéo à Espoir\n`) — confirmé visuellement par l'utilisateur.
+- Format corrigé en conséquence dans `SKILL.md` (règle « Étapes », table « Destination par défaut ») et dans `docs/specs/2026-09-15-extraire-taches-design.md` (§4, §6, §13 point 3) : `[ ] Étape`, une par ligne, sans tiret. Le format de la ligne d'aperçu affichée à l'écran (`1. [ ] … · [ ] …`) est inchangé — il ne s'écrit pas tel quel dans Airtable. `claude plugin validate --strict .` : passed après correction.
+- Pas de relance du banc T1 pour cette correction (elle aurait recréé des enregistrements réels) ; la syntaxe est vérifiée par l'écriture directe ci-dessus.
+
+### Suppression des tâches de test (2026-09-16)
+
+Avec l'accord de l'utilisateur, les deux enregistrements créés lors de l'essai réel ont été supprimés via `delete_records_for_table` (base `appeQ2eExbWynIgDK`, table `tblttmFAIQZK6zrXo`) :
+- `recfTpHDOK3CjWgmj` (« Analyser le retour sur les améliorations du support Lotchi »)
+- `recDn5EQXTeD6EFeK` (« Préparer la démo IronClassic pour le client »)
+
+Titres et `createdTime` (2026-09-16) revérifiés juste avant suppression — conformes. Réponse de l'outil : `{"records":[{"id":"recfTpHDOK3CjWgmj","deleted":true},{"id":"recDn5EQXTeD6EFeK","deleted":true}]}`. Relecture après suppression (`list_records_for_table` filtré sur ces deux IDs) : `totalRecordCount: 0` — les deux enregistrements n'existent plus. Aucun autre enregistrement touché.

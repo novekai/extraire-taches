@@ -35,7 +35,7 @@ Entrée : $ARGUMENTS
 
 - **Tâche** : action à réaliser décrite dans le texte. Actions que le texte donne comme étapes d'une tâche (par ex. « Étapes : … », « il faut … ») : étapes de cette tâche, pas tâches séparées. Pas une tâche : un constat, une action terminée. Formulation hésitante (« on pourrait peut-être… ») : ni retenue ni écartée, question « Est-ce une tâche à réaliser ? ».
 - **Titre** : verbe à l'infinitif + objet, 10 mots max, sans prénom ni date.
-- **Étapes** : cases `- [ ]`, une action vérifiable par étape, commençant par un verbe, 15 mots max, 6 étapes max (au-delà : découper en plusieurs tâches). Tâche très simple : aucune étape. Les étapes détaillent uniquement ce que dit le texte : aucun outil, chiffre, livrable ou périmètre absent du texte. Texte trop mince pour découper sans deviner : question.
+- **Étapes** : cases `[ ] Étape`, une par ligne, sans tiret (sans tiret : `- [ ]` s'affiche en puce suivie de « [ ] » dans Airtable ; `[ ] ` seul s'affiche en case à cocher), une action vérifiable par étape, commençant par un verbe, 15 mots max, 6 étapes max (au-delà : découper en plusieurs tâches). Tâche très simple : aucune étape. Les étapes détaillent uniquement ce que dit le texte : aucun outil, chiffre, livrable ou périmètre absent du texte. Texte trop mince pour découper sans deviner : question.
 - **Infos** : éléments du texte nécessaires à l'exécution (lien, contact, référence) sur une ligne `Infos : …` après les étapes.
 - **Statut** : `To Do`, sauf statut explicitement indiqué par le texte.
 - **Responsable** : personne(s) nommée(s), cherchée(s) par prénom parmi toutes les personnes, en priorité les actives. Seule correspondance inactive, ou plusieurs candidates : question.
@@ -88,7 +88,7 @@ Base Team & Project Management V3 `appeQ2eExbWynIgDK`, table Task `tblttmFAIQZK6
 | Donnée | Champ | ID | Valeur à écrire |
 |---|---|---|---|
 | Titre | Task title | `fldydXgRrUk29WfRp` | Texte |
-| Étapes | Description | `fldteZklRjdB9eiR5` | Markdown (étapes puis `Infos :`) |
+| Étapes | Description | `fldteZklRjdB9eiR5` | Markdown : `[ ] Étape` par ligne, sans tiret, puis `Infos :` |
 | Statut | Status | `fldJYU13yvGqIWnvI` | Nom d'option : To Do, In Progress, StandBy, Done, In Review |
 | Responsable | Team List | `fldVg3Jvi1Fcs7VyW` | IDs d'enregistrements de Team List `tblKXqRJrDTaOMyPi` (nom : `Name`, statut : `Status` = Actif/Inactif) |
 | Projet | Projet | `fldHMSLQ4d8tur42H` | Un ID d'enregistrement de Project `tblw9gE6OnFGFXW8s` (nom : `Nom du projet`, statut : `Status`) |

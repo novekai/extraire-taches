@@ -58,7 +58,7 @@ Seuls six champs sont remplis :
 | Champ | ID | Type | Règle de remplissage |
 |---|---|---|---|
 | Task title | `fldydXgRrUk29WfRp` | Texte multiligne | Titre de la tâche (§6) |
-| Description | `fldteZklRjdB9eiR5` | Texte enrichi | Étapes en cases à cocher (§6) |
+| Description | `fldteZklRjdB9eiR5` | Texte enrichi | Étapes en cases `[ ] Étape`, sans tiret (§6) |
 | Status | `fldJYU13yvGqIWnvI` | Sélection unique | `To Do` ; autre valeur seulement si le texte l'indique explicitement |
 | Team List | `fldVg3Jvi1Fcs7VyW` | Lien → Team List (`tblKXqRJrDTaOMyPi`), plusieurs possibles | Personne(s) nommée(s) dans le texte ou dans les réponses |
 | Projet | `fldHMSLQ4d8tur42H` | Lien → Project (`tblw9gE6OnFGFXW8s`), un seul | Projet identifié dans le texte ou dans les réponses |
@@ -102,13 +102,14 @@ Aucune écriture n'a lieu avant l'étape 8, ni sans accord explicite.
 - Une tâche très simple peut n'avoir aucune étape.
 - Les étapes détaillent uniquement ce que dit le texte : aucun périmètre, outil, chiffre ou livrable absent du texte. Si le texte est trop mince pour découper sans deviner, poser une question.
 - Si le texte contient des éléments nécessaires à l'exécution (lien, contact, référence), les ajouter après les étapes sur une ligne `Infos :`.
+- Syntaxe des cases : `[ ] Étape`, une par ligne, sans tiret devant. Sans tiret, car `- [ ]` s'affiche dans Airtable en puce suivie du texte littéral « [ ] » (pas de case) ; `[ ] ` seul s'affiche en case à cocher.
 
 Format :
 
 ```
-- [ ] Lire le message de Salma
-- [ ] Lister les améliorations demandées
-- [ ] Classer les améliorations par priorité
+[ ] Lire le message de Salma
+[ ] Lister les améliorations demandées
+[ ] Classer les améliorations par priorité
 Infos : message reçu par e-mail le 14/09
 ```
 
@@ -230,7 +231,7 @@ Puis un essai réel de 1 ou 2 tâches dans la base V3, supprimées ensuite avec 
 
 1. ~~`userConfig` accepte-t-il une valeur par défaut ?~~ Non appliquée : repli sur la destination écrite dans `SKILL.md`.
 2. `SKILL.md` à la racine donne une commande sans préfixe (vérifié avec `--plugin-dir`) ; reste à confirmer après installation depuis GitHub.
-3. Le texte enrichi Airtable rend-il les cases à cocher `- [ ]` ? Sinon, liste numérotée.
+3. ~~Le texte enrichi Airtable rend-il les cases à cocher `- [ ]` ? Sinon, liste numérotée.~~ Vérifié le 2026-09-16 par écriture réelle dans la base V3 (tâche 5) : `- [ ]` s'affiche en puce suivie du texte littéral « [ ] » (pas de case) ; `[ ] Étape` sans tiret, une par ligne, s'affiche en case à cocher fonctionnelle — confirmé visuellement par l'utilisateur après réécriture directe d'un enregistrement de test. Format `[ ] Étape` sans tiret adopté dans `SKILL.md` et ci-dessus (§4, §6).
 4. Méthode de lecture des `.docx`.
 5. Format des noms d'outils dans `allowed-tools` pour les connecteurs claude.ai.
 
