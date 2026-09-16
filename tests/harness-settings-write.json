@@ -7,7 +7,6 @@
       "mcp__claude_ai_Airtable__create_interface",
       "mcp__claude_ai_Airtable__create_page",
       "mcp__claude_ai_Airtable__create_record_comment",
-      "mcp__claude_ai_Airtable__create_records_for_table",
       "mcp__claude_ai_Airtable__create_table",
       "mcp__claude_ai_Airtable__delete_automation",
       "mcp__claude_ai_Airtable__delete_interface",
