@@ -6,12 +6,14 @@ Plugin Claude Code : transforme un texte (compte-rendu, liste de points, brief, 
 
 - Claude Code (terminal, VS Code ou Claude Desktop), connecté avec votre compte claude.ai (pas de clé API).
 - Le connecteur **Airtable** activé dans claude.ai (Paramètres > Connecteurs), avec accès à la base cible.
-- Un accès au dépôt privé `novekai/extraire-taches` sur GitHub, et git authentifié sur ce compte GitHub (par exemple `gh auth login` puis `gh auth setup-git`).
+- `git` installé (Claude Code l'utilise pour récupérer le plugin).
 - Vos permissions Claude ne doivent **pas** pré-approuver les outils d'écriture Airtable : limitez la règle d'autorisation aux outils de lecture, ou gardez une règle `ask` pour `mcp__claude_ai_Airtable__create_records_for_table`. Une règle qui autorise tout le connecteur (`mcp__claude_ai_Airtable__*`) supprime la demande de permission avant la création : la validation de l'aperçu reste, mais plus le garde-fou du terminal.
 - Pour lire un fichier `.docx` : Python avec le module `python-docx` (`pip install python-docx`). Les autres formats (`.txt`, `.md`, `.pdf`) n'exigent rien de plus.
 - Lire un fichier `.docx` (commande Python) ou suivre un lien demande votre permission dans Claude Code au moment de l'appel.
 
 ## Installation
+
+Le dépôt est public : aucun compte GitHub ni authentification n'est nécessaire.
 
 ```
 claude plugin marketplace add novekai/extraire-taches
