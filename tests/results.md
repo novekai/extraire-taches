@@ -84,3 +84,19 @@ Les lancements du 16/09 (T7, T4 deux tours) utilisent `SKILL.md` avec « doublon
 | T7 | Réussi (préambule, bloc de code) | Réussi |
 
 Sur le `SKILL.md` corrigé, tous les lancements observés réussissent : T1 à T7 et les seconds tours de T2 et T4. `outils refusés` vide sur tous les lancements (outils d'écriture retirés par le banc).
+
+## Relecture finale — 2026-09-16
+
+`SKILL.md` avec les corrections de la relecture finale de branche : validation (seul « oui » crée, doublon créé seulement sur son propre « oui »), destination configurée différente, nouvelle comparaison des doublons, statuts clos, aperçu avec colonne Statut, ligne `Infos :` et projet dans la colonne Doublon. Banc avec `permissions.deny` (`tests/harness-settings.json`).
+
+Liste des outils : événement `init` de `claude -p --output-format stream-json --verbose` (Claude Code 2.1.217, `MCP_CONNECTION_NONBLOCKING=false`, sans quoi `init` part avant la connexion des connecteurs claude.ai et ne liste aucun outil MCP). Sans réglages : 46 outils `mcp__claude_ai_Airtable__*`. Avec `harness-settings.json` : les 21 outils d'écriture disparaissent, les 25 de lecture restent. Avec `harness-settings-write.json` : même liste plus `create_records_for_table` seul. Coût des six sondes haiku : 0,23 USD.
+
+| Cas | session_id | Coût (USD) | Verdict | Écarts restants |
+|---|---|---|---|---|
+| T1 | `917f7fe6-1c3e-4199-b3f7-1096474a9616` | 0,97 | Réussi | 2 tâches conformes (Aurel / Loup X Lotchi / 16/09/2026, Hugues / IronClassic / 17/09/2026, 3 étapes chacune) ; colonne Statut ; doublon « Support Client : Analyse du message envoyé par Salma sur les améliorations à apporter » (To Do, Loup X Lotchi) avec « Créer quand même ? (oui/non) ». Forme : préambule contraire au gabarit, « Contexte lu. J'ai trouvé une tâche quasi identique déjà présente pour la tâche d'Aurel — je la signale ci-dessous. » |
+| T2 (1er tour) | `2a8416b8-dff3-4aab-aaf5-9e2fe7ab40a9` | 0,96 | Réussi | Questions seules : responsable de la reprise, projet Eureka (3 projets Annulé), contenu et projet du SEO, responsable et projet/client de la relance, date de chaque tâche. Aucune valeur inventée. |
+| T2 (2e tour) | `2a8416b8-dff3-4aab-aaf5-9e2fe7ab40a9` | 0,76 | Réussi | Martial / Site web Eurêka / 22/09/2026, Martial / Optimisation SEO des pages villes / 23/09/2026, pas de relance ; colonne Statut, aperçu sans préambule terminé par « Valider ? ». |
+| T4 (1er tour) | `e60dfd7a-97c7-4014-b2bd-f4f61967c31a` | 1,00 | Réussi | Doublon (To Do, projet Loup X Lotchi) avec « Créer quand même ? (oui/non) » ; question projet Loup X Lotchi (En cours) ou Lotchi Support Client (En prod) ; Modeste / Développement Btppulse / 16/09/2026 ; point 3 questionné ; point 4 écarté ; 21/09/2026 sans question. Étapes de la tâche 2 non annoncées à ce tour (vérifiées au 2e tour). |
+| T4 (2e tour) | `e60dfd7a-97c7-4014-b2bd-f4f61967c31a` | 0,54 | Réussi | Une tâche Modeste / Développement Btppulse / 16/09/2026, étapes reproduire / corriger / déployer en préproduction, ligne « Infos : bug signalé par Anthony », colonne Statut ; « Créer quand même ? » non reposé ; se termine par « Valider ? ». |
+
+`outils refusés` vide sur les cinq lancements. Coût total de la relecture : 4,45 USD (4,22 pour les cinq lancements, 0,23 pour les sondes). Non exercé par ces cas : nouvelle comparaison des doublons après une réponse (les projets fixés en T2 et T4 avaient déjà été lus au 1er tour), destination configurée différente, validation « modifier » / « retirer ».
