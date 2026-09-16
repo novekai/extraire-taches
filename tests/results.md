@@ -100,3 +100,42 @@ Liste des outils : événement `init` de `claude -p --output-format stream-json 
 | T4 (2e tour) | `e60dfd7a-97c7-4014-b2bd-f4f61967c31a` | 0,54 | Réussi | Une tâche Modeste / Développement Btppulse / 16/09/2026, étapes reproduire / corriger / déployer en préproduction, ligne « Infos : bug signalé par Anthony », colonne Statut ; « Créer quand même ? » non reposé ; se termine par « Valider ? ». |
 
 `outils refusés` vide sur les cinq lancements. Coût total de la relecture : 4,45 USD (4,22 pour les cinq lancements, 0,23 pour les sondes). Non exercé par ces cas : nouvelle comparaison des doublons après une réponse (les projets fixés en T2 et T4 avaient déjà été lus au 1er tour), destination configurée différente, validation « modifier » / « retirer ».
+
+## Essai réel d'écriture — 2026-09-16
+
+Premier essai avec écriture Airtable réellement débloquée (`tests/run-case.ps1 -Case T1 -Arm with -AllowWrite`, réglages `tests/harness-settings-write.json` : seul `create_records_for_table` autorisé parmi les outils d'écriture, `update_records_for_table` et `delete_records_for_table` refusés). Base réelle et partagée `Team & Project Management V3` (`appeQ2eExbWynIgDK`), table `Task` (`tblttmFAIQZK6zrXo`). Accord préalable de l'utilisateur pour créer 2 tâches de test puis les supprimer.
+
+| Tour | session_id | Coût (USD) | subtype / is_error | outils refusés | Verdict |
+|---|---|---|---|---|---|
+| 1 (aperçu) | `d8900286-43ab-4f4d-8316-cbe427f464dd` | 0,9670235 | success / False | (vide) | Aperçu conforme au gabarit (tableau + étapes + source, terminé par « Valider ? »), doublon Aurel signalé avec « Créer quand même ? (oui/non) ». Vérifié avant le tour 2 : `list_records_for_table` filtré sur les deux titres de l'aperçu → 0 enregistrement créé pendant ce tour. |
+| 2 (résumé, réponse simulée « Tâche 1 : Créer quand même ? oui. Valider : oui, créer les deux tâches. ») | `d8900286-43ab-4f4d-8316-cbe427f464dd` | 1,3336825 | success / False | (vide) | 2 enregistrements créés, liens affichés dans la réponse finale. |
+
+Coût total : 2,30 USD (budget 6 USD).
+
+### Enregistrements créés
+
+- **recfTpHDOK3CjWgmj** — https://airtable.com/appeQ2eExbWynIgDK/tblttmFAIQZK6zrXo/recfTpHDOK3CjWgmj
+  - Task title : « Analyser le retour sur les améliorations du support Lotchi »
+  - Description (brut) : `- [ ] Lire le message de Salma\n- [ ] Lister les améliorations demandées\n- [ ] Classer les améliorations par priorité\n`
+  - Status : To Do
+  - Team List : Aurel (`recR6eGZLRjFYWAxo`)
+  - Projet : Loup X Lotchi (`recG6bikkgSXfHNSq`)
+  - Start Date : 2026-09-16
+- **recDn5EQXTeD6EFeK** — https://airtable.com/appeQ2eExbWynIgDK/tblttmFAIQZK6zrXo/recDn5EQXTeD6EFeK
+  - Task title : « Préparer la démo IronClassic pour le client »
+  - Description (brut) : `- [ ] Mettre à jour les données de test\n- [ ] Enregistrer une vidéo de 3 minutes\n- [ ] Envoyer la vidéo à Espoir\n`
+  - Status : To Do
+  - Team List : Hugues (`recRMrVaf7uAIHQ0c`)
+  - Projet : IronClassic (`reczt1PGhnePYofnZ`)
+  - Start Date : 2026-09-17
+
+### Comparaison avec l'aperçu et l'Attendu de `tests/cases/T1.md`
+
+- Titres, responsables, projets, dates et statut To Do identiques entre l'aperçu du tour 1 et les valeurs lues en base — aucun écart.
+- Conforme à l'Attendu : deux tâches exactement ; Aurel / Loup X Lotchi / 16/09/2026, 3 étapes (lire, lister, classer) ; Hugues / IronClassic / 17/09/2026, 3 étapes (données de test, vidéo de 3 minutes, envoi à Espoir) ; titres à l'infinitif ≤10 mots sans prénom ni date ; aucune étape/chiffre absent du texte (« 3 minutes » repris) ; doublon Aurel signalé avec « Créer quand même ? » et créé après un « oui » propre à cette question.
+- La réponse finale du tour 2 liste bien les deux liens Airtable (tableau avec colonne « Lien », `[Ouvrir](https://airtable.com/...)`), conformément à l'étape 8 du déroulé.
+- Champ Description en base : format `- [ ] …` multi-ligne, conforme au gabarit de `SKILL.md` (Destination par défaut) — inchangé dans ce test.
+- Anomalie mineure observée (hors périmètre de ce test, non corrigée ici) : dans l'aperçu du tour 1, les étapes affichées à l'écran utilisent le caractère Unicode « ☐ » (U+2610) au lieu de la syntaxe Markdown `[ ]` du gabarit Aperçu de `SKILL.md` — confirmé sur les octets bruts de `tests/results/T1-with-20260916-104242.json`. Le champ Description réellement écrit en base n'est pas affecté.
+- Champ non lié au skill : `Created` (`fldWCnbt63DQVAurI`, type `createdTime`) = 2026-09-16 sur les deux enregistrements — horodatage automatique Airtable, hors mapping de `SKILL.md`.
+
+Rendu des cases à cocher : en attente de vérification par l'utilisateur ; suppression en attente.
